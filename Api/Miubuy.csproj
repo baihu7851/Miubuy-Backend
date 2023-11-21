@@ -195,6 +195,10 @@
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\TempDetail.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\TagApiModel\TagCreateModel.cs" />
+    <Compile Include="Models\TagApiModel\TagsViewModel.cs" />
+    <Compile Include="Models\TagApiModel\TagUpdateModel.cs" />
+    <Compile Include="Models\TagApiModel\TagViewModel.cs" />
     <Compile Include="Models\UserApiModel\UserUpdateModel.cs" />
     <Compile Include="Models\UserApiModel\UserCreateModel.cs" />
     <Compile Include="Models\UserApiModel\UserViewModel.cs" />

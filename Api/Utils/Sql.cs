@@ -11,18 +11,5 @@ namespace Miubuy.Utils
             var db = new Model();
             db.Entry(saveData).State = EntityState.Modified;
         }
-
-        public void Update()
-        {
-            var sql = new Model();
-            sql.Entry(this).State = EntityState.Modified;
-            sql.SaveChanges();
-        }
-
-        public void Update(Model sql)
-        {
-            sql.Entry(this).State = EntityState.Modified;
-            sql.SaveChanges();
-        }
     }
 }
