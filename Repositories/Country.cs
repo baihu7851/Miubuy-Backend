@@ -2,15 +2,12 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Common;
-using Miubuy.Utils;
-using Sql = Miubuy.Utils.Sql;
 
-namespace Miubuy.Models
+namespace Repositories
 {
-    public class City : Sql
+    public class Country
     {
-        public City()
+        public Country()
         {
             Delete = false;
         }
@@ -19,11 +16,8 @@ namespace Miubuy.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Display(Name = "郡Id")]
-        public int CountyId { get; set; }
-
         [Required]
-        [Display(Name = "地區名稱")]
+        [Display(Name = "國家名稱")]
         public string Name { get; set; }
 
         [Display(Name = "刪除")]

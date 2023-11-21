@@ -1,16 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Common;
-using Miubuy.Utils;
-using Sql = Miubuy.Utils.Sql;
 
-namespace Miubuy.Models
+namespace Repositories
 {
-    public class City : Sql
+    public class Tag
     {
-        public City()
+        public Tag()
         {
             Delete = false;
         }
@@ -19,15 +15,14 @@ namespace Miubuy.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Display(Name = "郡Id")]
-        public int CountyId { get; set; }
-
         [Required]
-        [Display(Name = "地區名稱")]
+        [Display(Name = "標籤名稱")]
         public string Name { get; set; }
 
+        [Display(Name = "標籤顏色")]
+        public string Color { get; set; }
+
         [Display(Name = "刪除")]
-        [DefaultValue(false)]
         public bool Delete { get; set; }
 
         public virtual ICollection<Room> Rooms { get; set; }

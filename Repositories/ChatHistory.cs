@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 using Common;
-using Miubuy.Utils;
 
-namespace Miubuy.Models
+namespace Repositories
 {
     public class ChatHistory
     {

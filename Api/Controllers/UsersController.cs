@@ -1,22 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Cors;
-using System.Web.Http.Description;
-using Jose;
-using Miubuy.Models;
+using Miubuy.Models.UserApiModel;
 using Miubuy.Utils;
+using Services;
+using Services.Models;
 
 namespace Miubuy.Controllers
 {
     [EnableCors("*", "*", "*")]
     public class UsersController : ApiController
     {
-        private const string Key = "miumiu";
-        private readonly Model _db = new Model();
+        private readonly UserService _userService;
+
+        public UsersController()
+        {
+            _userService = new UserService();
+        }
+
+        ~UsersController()
+        {
+            _userService.Dispose();
+            Dispose();
+        }
 
         // GET: api/Users
         [HttpGet]
@@ -25,132 +30,137 @@ namespace Miubuy.Controllers
         {
             var permission = JwtAuth.GetTokenPermission(Request.Headers.Authorization.Parameter);
             if ((permission & 128) <= 0) return BadRequest("權限不足");
-            return Ok(_db.Users.Select(user => new
+            var servicesResult = _userService.GetUsers();
+            if (!servicesResult.IsSusses)
             {
-                user.Id,
-                user.Account,
-                user.Nickname,
-                user.Name,
-                user.Picture,
-                user.Email,
-                user.Phone,
-                user.Birthday,
-                user.Permission,
-                user.BuyerAverageStar,
-                user.SellerAverageStar
-            }));
+                BadRequest(servicesResult.Message);
+            }
+            var viewModel = new UsersViewModel();
+            foreach (var userModel in servicesResult.Data)
+            {
+                var user = new UsersViewModel.User
+                {
+                    Id = userModel.Id,
+                    Account = userModel.Account,
+                    Nickname = userModel.Nickname,
+                    Name = userModel.Name,
+                    Picture = userModel.Picture,
+                    Email = userModel.Email,
+                    Phone = userModel.Phone,
+                    Birthday = userModel.Birthday,
+                    Permission = userModel.Permission,
+                    BuyerAverageStar = userModel.BuyerAverageStar,
+                    SellerAverageStar = userModel.SellerAverageStar
+                };
+                viewModel.Users.Add(user);
+            }
+
+            return Ok(viewModel.Users);
         }
 
         // GET: api/Users/5
         [HttpGet]
         [JwtAuth]
-        [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
             var permission = JwtAuth.GetTokenPermission(Request.Headers.Authorization.Parameter);
             var tokenId = JwtAuth.GetTokenId(Request.Headers.Authorization.Parameter);
             if ((permission & 1) <= 0) return BadRequest("權限不足");
             if (tokenId != id) return BadRequest("使用者錯誤");
-            var user = _db.Users.Find(id);
-            return Ok(new
+            var servicesResult = _userService.GetUser(id);
+            if (!servicesResult.IsSusses)
             {
-                user.Id,
-                user.Account,
-                user.Nickname,
-                user.Name,
-                user.Picture,
-                user.Email,
-                user.Phone,
-                user.Birthday,
-                user.BuyerAverageStar,
-                user.SellerAverageStar
-            });
+                BadRequest(servicesResult.Message);
+            }
+
+            var viewModel = new UserViewModel()
+            {
+                Id = servicesResult.Data.Id,
+                Account = servicesResult.Data.Account,
+                Nickname = servicesResult.Data.Nickname,
+                Name = servicesResult.Data.Name,
+                Picture = servicesResult.Data.Picture,
+                Email = servicesResult.Data.Email,
+                Phone = servicesResult.Data.Phone,
+                Birthday = servicesResult.Data.Birthday,
+                BuyerAverageStar = servicesResult.Data.BuyerAverageStar,
+                SellerAverageStar = servicesResult.Data.SellerAverageStar
+            };
+
+            return Ok(viewModel);
         }
 
         // PUT: api/Users/5
         [HttpPut]
         [JwtAuth]
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(int id, [FromBody] User newUser)
+        public IHttpActionResult PutUser(int id, [FromBody] UserUpdateModel newUser)
         {
             var permission = JwtAuth.GetTokenPermission(Request.Headers.Authorization.Parameter);
             var tokenId = JwtAuth.GetTokenId(Request.Headers.Authorization.Parameter);
             if ((permission & 1) <= 0) return BadRequest("權限不足");
             if (tokenId != id) return BadRequest("使用者錯誤");
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            var user = _db.Users.Find(id);
-            user.PasswordSalt = Salt.CreateSalt();
-            user.Password = Salt.GenerateHashWithSalt(newUser.Password, user.PasswordSalt);
-            user.Nickname = newUser.Nickname ?? user.Nickname;
-            user.Name = newUser.Name ?? user.Name;
-            user.Picture = newUser.Picture ?? user.Picture;
-            user.Email = newUser.Email ?? user.Email;
-            user.Phone = newUser.Phone ?? user.Phone;
-            user.Birthday = user.Birthday;
-            _db.Entry(user).State = EntityState.Modified;
-            try
+            var userModel = new UserModel
             {
-                _db.SaveChanges();
-            }
-            catch (Exception e)
+                Password = newUser.Password,
+                Nickname = newUser.Nickname,
+                Picture = newUser.Picture,
+                Name = newUser.Name,
+                Birthday = newUser.Birthday,
+                Email = newUser.Email,
+                Phone = newUser.Phone
+            };
+            var servicesResult = _userService.UpdateUser(userModel);
+            if (!servicesResult.IsSusses)
             {
-                return BadRequest(e.Message);
+                BadRequest(servicesResult.Message);
             }
             return Ok(id);
         }
 
         // POST: api/Users
         [HttpPost]
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser([FromBody] User user)
+        public IHttpActionResult PostUser([FromBody] UserCreateModel user)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            if (_db.Users.FirstOrDefault(data => data.Account == user.Account) != null) return BadRequest("帳號已存在");
-            user.PasswordSalt = Salt.CreateSalt();
-            user.Password = Salt.GenerateHashWithSalt(user.Password, user.PasswordSalt);
-            user.Permission = 127;
-            _db.Users.Add(user);
-            try
+            var userModel = new UserModel
             {
-                _db.SaveChanges();
-                return Ok(user.Id);
-            }
-            catch (Exception e)
+                Account = user.Account,
+                Password = user.Password,
+                PasswordSalt = user.PasswordSalt,
+                Nickname = user.Nickname,
+                Picture = user.Picture,
+                Name = user.Name,
+                Birthday = user.Birthday,
+                Email = user.Email,
+                Phone = user.Phone
+            };
+            var servicesResult = _userService.CreateUser(userModel);
+            if (!servicesResult.IsSusses)
             {
-                return BadRequest(e.Message);
+                BadRequest(servicesResult.Message);
             }
+            var userResult = _userService.GetUser(user.Account);
+            if (!servicesResult.IsSusses)
+            {
+                BadRequest(servicesResult.Message);
+            }
+            return Ok(userResult.Data.Id);
         }
 
         // DELETE: api/Users/5
         [HttpDelete]
         [JwtAuth]
-        [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {
             var permission = JwtAuth.GetTokenPermission(Request.Headers.Authorization.Parameter);
             if ((permission & 128) <= 0) return BadRequest("權限不足");
-            var userData = _db.Users.Find(id);
-            if (userData == null) return NotFound();
-            userData.Permission = 0;
-            Sql.UpData(userData.Permission);
-            try
+            var servicesResult = _userService.DeletePermission(id);
+            if (!servicesResult.IsSusses)
             {
-                _db.SaveChanges();
-                return Ok(id);
+                BadRequest(servicesResult.Message);
             }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
+            return Ok(id);
         }
     }
 }

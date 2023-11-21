@@ -182,15 +182,6 @@
     </Compile>
     <Compile Include="Hubs\Class.cs" />
     <Compile Include="Hubs\MiuHub.cs" />
-    <Compile Include="Migrations\202102020708258_020201.cs" />
-    <Compile Include="Migrations\202102020708258_020201.Designer.cs">
-      <DependentUpon>202102020708258_020201.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102020709098_020202.cs" />
-    <Compile Include="Migrations\202102020709098_020202.Designer.cs">
-      <DependentUpon>202102020709098_020202.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChatHistory.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
@@ -204,12 +195,14 @@
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\TempDetail.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserApiModel\UserUpdateModel.cs" />
+    <Compile Include="Models\UserApiModel\UserCreateModel.cs" />
+    <Compile Include="Models\UserApiModel\UserViewModel.cs" />
+    <Compile Include="Models\UserApiModel\UsersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Utils\Enum.cs" />
     <Compile Include="Utils\JwtAuth.cs" />
     <Compile Include="Utils\JwtToken.cs" />
-    <Compile Include="Utils\Salt.cs" />
     <Compile Include="Utils\Sql.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -230,12 +223,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102020708258_020201.resx">
-      <DependentUpon>202102020708258_020201.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102020709098_020202.resx">
-      <DependentUpon>202102020709098_020202.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{772af4db-7327-400e-bc6c-2fc8b114cbc4}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{cf784ca6-0d4e-4657-a753-4e66b2d9eed5}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
