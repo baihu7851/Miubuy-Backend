@@ -4,6 +4,7 @@ namespace Miubuy.Models.UserApiModel
 {
     public class UserUpdateModel
     {
+        public int Id { get; set; }
         public string Password { get; set; }
         public string Nickname { get; set; }
         public string Picture { get; set; }

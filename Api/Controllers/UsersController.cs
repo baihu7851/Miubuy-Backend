@@ -102,6 +102,7 @@ namespace Miubuy.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var userModel = new UserModel
             {
+                Id = newUser.Id,
                 Password = newUser.Password,
                 Nickname = newUser.Nickname,
                 Picture = newUser.Picture,
