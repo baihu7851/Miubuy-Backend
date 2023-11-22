@@ -33,14 +33,7 @@ namespace Services.Models
         /// </summary>
         public bool IsSusses { get; private set; }
 
-        public void SetSuccess(T data)
-        {
-            IsSusses = true;
-            Code = 0;
-            Data = data;
-        }
-
-        public void SetSuccess(T data, int code)
+        public void SetSuccess(T data, int code = 0)
         {
             IsSusses = true;
             Code = code;
