@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Miubuy", "Api\Miubuy.csproj", "{5DD381CD-1DCF-4389-AF08-343C52435F87}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{772AF4DB-7327-400E-BC6C-2FC8B114CBC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{CF784CA6-0D4E-4657-A753-4E66B2D9EED5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{8432C04C-259B-436C-B82C-BB8E34C8B531}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{5DD381CD-1DCF-4389-AF08-343C52435F87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5DD381CD-1DCF-4389-AF08-343C52435F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DD381CD-1DCF-4389-AF08-343C52435F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5DD381CD-1DCF-4389-AF08-343C52435F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5DD381CD-1DCF-4389-AF08-343C52435F87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{772AF4DB-7327-400E-BC6C-2FC8B114CBC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{772AF4DB-7327-400E-BC6C-2FC8B114CBC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{772AF4DB-7327-400E-BC6C-2FC8B114CBC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{8432C04C-259B-436C-B82C-BB8E34C8B531}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8432C04C-259B-436C-B82C-BB8E34C8B531}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8432C04C-259B-436C-B82C-BB8E34C8B531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DD381CD-1DCF-4389-AF08-343C52435F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DD381CD-1DCF-4389-AF08-343C52435F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DD381CD-1DCF-4389-AF08-343C52435F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DD381CD-1DCF-4389-AF08-343C52435F87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

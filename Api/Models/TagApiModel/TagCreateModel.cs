@@ -1,4 +1,4 @@
-﻿namespace Miubuy.Models.TagApiModel
+﻿namespace Api.Models.TagApiModel
 {
     public class TagCreateModel
     {

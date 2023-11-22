@@ -1,8 +1,6 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 
-namespace Miubuy.Models
+namespace Api.Models
 {
     public class Model : DbContext
     {

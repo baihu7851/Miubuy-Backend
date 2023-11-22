@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Miubuy.Models.UserApiModel
+namespace Api.Models.UserApiModel
 {
     public class UserViewModel
     {

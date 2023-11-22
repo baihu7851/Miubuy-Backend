@@ -4,7 +4,7 @@ using System.Text;
 using System.Web.Http.Filters;
 using Jose;
 
-namespace Miubuy.Utils
+namespace Api.Utils
 {
     public class JwtAuth : ActionFilterAttribute
     {

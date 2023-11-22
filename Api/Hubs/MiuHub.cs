@@ -1,18 +1,13 @@
 ﻿using Microsoft.AspNet.SignalR;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Web;
+using Api.Models;
 using Common;
-using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.SignalR.Hubs;
-using Miubuy.Models;
-using Miubuy.Utils;
 
-namespace Miubuy.Hubs
+namespace Api.Hubs
 {
     [HubName("miuHub")]
     public class MiuHub : Hub

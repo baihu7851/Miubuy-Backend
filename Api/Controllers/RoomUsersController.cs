@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
-using Common;
-using Miubuy.Models;
-using Miubuy.Utils;
+using Api.Models;
+using Api.Utils;
 
-namespace Miubuy.Controllers
+namespace Api.Controllers
 {
     [EnableCors("*", "*", "*")]
     public class RoomUsersController : ApiController

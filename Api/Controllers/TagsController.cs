@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Services;
+using Services.Models;
+using System;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
-using Miubuy.Models;
-using Miubuy.Models.TagApiModel;
-using Miubuy.Utils;
-using Services;
-using Services.Models;
+using Api.Models;
+using Api.Models.TagApiModel;
+using Api.Utils;
 
-namespace Miubuy.Controllers
+namespace Api.Controllers
 {
     [EnableCors("*", "*", "*")]
     public class TagsController : ApiController

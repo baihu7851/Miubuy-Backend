@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Miubuy.Models.TagApiModel
+namespace Api.Models.TagApiModel
 {
     public class TagsViewModel
     {

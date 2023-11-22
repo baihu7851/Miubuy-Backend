@@ -1,13 +1,11 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using System;
-using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using Microsoft.Owin.Cors;
 
-[assembly: OwinStartup(typeof(Miubuy.Startup))]
+[assembly: OwinStartup(typeof(Api.Startup))]
 
-namespace Miubuy
+namespace Api
 {
     public class Startup
     {

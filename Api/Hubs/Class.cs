@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations.Sql;
-using System.Linq;
-using System.Web;
-
-namespace Miubuy.Hubs
+﻿namespace Api.Hubs
 {
     public class Class
     {

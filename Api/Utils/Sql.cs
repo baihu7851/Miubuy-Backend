@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using Miubuy.Models;
+using Api.Models;
 
-namespace Miubuy.Utils
+namespace Api.Utils
 {
     public class Sql
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Miubuy.Models.UserApiModel
+namespace Api.Models.UserApiModel
 {
     public class UsersViewModel
     {

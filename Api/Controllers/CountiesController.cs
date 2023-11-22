@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Api.Models;
+using Api.Utils;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
-using Miubuy.Models;
-using Miubuy.Utils;
 
-namespace Miubuy.Controllers
+namespace Api.Controllers
 {
     [EnableCors("*", "*", "*")]
     public class CountiesController : ApiController

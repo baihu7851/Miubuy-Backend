@@ -2,9 +2,8 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Miubuy.Utils;
 
-namespace Miubuy.Models
+namespace Api.Models
 {
     public class County
     {

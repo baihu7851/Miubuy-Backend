@@ -1,11 +1,11 @@
-﻿using System.Web.Http;
-using System.Web.Http.Cors;
-using Miubuy.Models.UserApiModel;
-using Miubuy.Utils;
-using Services;
+﻿using Services;
 using Services.Models;
+using System.Web.Http;
+using System.Web.Http.Cors;
+using Api.Models.UserApiModel;
+using Api.Utils;
 
-namespace Miubuy.Controllers
+namespace Api.Controllers
 {
     [EnableCors("*", "*", "*")]
     public class UsersController : ApiController

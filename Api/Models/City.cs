@@ -2,11 +2,9 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Common;
-using Miubuy.Utils;
-using Sql = Miubuy.Utils.Sql;
+using Sql = Api.Utils.Sql;
 
-namespace Miubuy.Models
+namespace Api.Models
 {
     public class City : Sql
     {

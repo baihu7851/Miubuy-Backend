@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Api.Models;
 using Jose;
-using Miubuy.Models;
 
-namespace Miubuy.Utils
+namespace Api.Utils
 {
     public class JwtToken
     {

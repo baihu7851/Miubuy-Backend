@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -6,11 +7,10 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
-using Common;
-using Miubuy.Models;
-using Miubuy.Utils;
+using Api.Models;
+using Api.Utils;
 
-namespace Miubuy.Controllers
+namespace Api.Controllers
 {
     [EnableCors("*", "*", "*")]
     public class UtilsController : ApiController
@@ -74,7 +74,7 @@ namespace Miubuy.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.Message);
-            };
+            }
         }
 
         // POST: api/SelectRooms
