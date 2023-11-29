@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TagServiceTest.cs" />
     <Compile Include="UserServiceTest.cs" />
     <Compile Include="ServicesResultTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
