@@ -11,9 +11,20 @@ namespace Services
     {
         private readonly Model _db;
 
+        /// <summary>
+        /// 先使用內部建立 DbContext，重構後全部改為外部注入
+        /// </summary>
         public UserService()
         {
             _db = new Model();
+        }
+
+        /// <summary>
+        /// 外部注入資料內容，目前僅供測試，待重構後全部使用注入
+        /// </summary>
+        public UserService(Model dbContext)
+        {
+            _db = dbContext;
         }
 
         public void Dispose()

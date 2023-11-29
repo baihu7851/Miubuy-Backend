@@ -15,6 +15,14 @@ namespace Services
             _db = new Model();
         }
 
+        /// <summary>
+        /// 外部注入資料內容，目前僅供測試，待重構後全部使用注入
+        /// </summary>
+        public TagService(Model dbContext)
+        {
+            _db = dbContext;
+        }
+
         public void Dispose()
         {
             _db.Dispose();
