@@ -84,8 +84,7 @@ namespace ServiceTest
             Assert.IsFalse(serviceResult.IsSusses);
             Assert.AreEqual(-1, serviceResult.Code);
             Assert.AreEqual("尚未設定回傳狀態", serviceResult.Message);
-            Assert.IsNotNull(serviceResult.Data); // 確保在預設狀態下 Data 不為 null
-            Assert.IsInstanceOfType(serviceResult.Data, typeof(object)); // 確保 Data 的型別是 object
+            Assert.IsNull(serviceResult.Data);
         }
     }
 }

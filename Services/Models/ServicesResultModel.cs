@@ -6,7 +6,7 @@ namespace Services.Models
     /// 服務層回傳基本物件
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ServicesResultModel<T> where T : class, new()
+    public class ServicesResultModel<T> where T : class
     {
         /// <summary>
         /// 錯誤代碼
@@ -26,7 +26,7 @@ namespace Services.Models
         /// <summary>
         /// 資料內容
         /// </summary>
-        public T Data { get; private set; } = new T();
+        public T Data { get; private set; }
 
         /// <summary>
         /// 是否成功
