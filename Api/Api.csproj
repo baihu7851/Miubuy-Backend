@@ -227,6 +227,10 @@
       <Project>{772af4db-7327-400e-bc6c-2fc8b114cbc4}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
+      <Project>{8432c04c-259b-436c-b82c-bb8e34c8b531}</Project>
+      <Name>Repositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{cf784ca6-0d4e-4657-a753-4e66b2d9eed5}</Project>
       <Name>Services</Name>
